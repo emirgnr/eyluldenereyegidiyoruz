@@ -42,24 +42,19 @@ parmakla sürüklenmesi/iki parmakla yakınlaştırılması ve durak pop-up'ı �
 sürüklemesi bırakıldığı yerde kalıyor (sapma 0,00 birim) ve sürüklerken metin seçilmiyor.
 Beş turun bağlantısı da HTTP 200 dönüyor.
 
-## Yayınlama (Cloudflare)
+## Yayınlama
 
-Depo **private** kalır; Cloudflare private GitHub deposundan derleyip yayınlar.
+Site **GitHub Pages** üzerinde yayında:
 
-| Ayar | Değer |
-| --- | --- |
-| Build command | `npm run build` |
-| Deploy command | `npx wrangler deploy` |
-| Node sürümü | `.node-version` dosyasından okunur (20) |
+**<https://emirgnr.github.io/eyluldenereyegidiyoruz/>**
 
-Yayın yapılandırması `wrangler.jsonc` içinde: Worker kodu yok, yalnızca derlenmiş
-`dist/` klasörü statik dosya olarak sunulur.
+`main` dalına her push'ta `.github/workflows/pages.yml` iş akışı depoyu derleyip
+(`npm ci && npm run build`) `dist/` çıktısını Pages'e dağıtır. Elle bir şey yapmak
+gerekmez; iş akışı Actions sekmesinden elle de tetiklenebilir.
 
-`public/_headers` her yanıta `X-Robots-Tag: noindex, nofollow` ekler, `public/robots.txt`
-tarayıcıları kapatır ve `index.html` içinde de aynı meta etiketi var — sayfa arama
-motorlarında çıkmaz, yalnızca adresi bilen açabilir. Adresi bilenlerin de giremesini
-istemiyorsan Cloudflare Zero Trust → Access ile projeye e-posta doğrulamalı bir politika
-eklenebilir (ücretsiz katmanda 50 kullanıcıya kadar).
+`public/robots.txt` ve `index.html` içindeki `<meta name="robots" content="noindex">`
+sayesinde sayfa arama motorlarında listelenmez — kişisel bir karşılaştırma sayfası
+olduğu için adresi bilenlere açık, aranınca bulunmaz.
 
 ## Harita hakkında
 
