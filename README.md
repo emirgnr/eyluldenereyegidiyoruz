@@ -42,16 +42,18 @@ parmakla sürüklenmesi/iki parmakla yakınlaştırılması ve durak pop-up'ı �
 sürüklemesi bırakıldığı yerde kalıyor (sapma 0,00 birim) ve sürüklerken metin seçilmiyor.
 Beş turun bağlantısı da HTTP 200 dönüyor.
 
-## Yayınlama (Cloudflare Pages)
+## Yayınlama (Cloudflare)
 
-Depo **private** kalır; Cloudflare Pages private GitHub deposundan derleyip yayınlar.
+Depo **private** kalır; Cloudflare private GitHub deposundan derleyip yayınlar.
 
 | Ayar | Değer |
 | --- | --- |
-| Framework preset | None |
 | Build command | `npm run build` |
-| Build output directory | `dist` |
+| Deploy command | `npx wrangler deploy` |
 | Node sürümü | `.node-version` dosyasından okunur (20) |
+
+Yayın yapılandırması `wrangler.jsonc` içinde: Worker kodu yok, yalnızca derlenmiş
+`dist/` klasörü statik dosya olarak sunulur.
 
 `public/_headers` her yanıta `X-Robots-Tag: noindex, nofollow` ekler, `public/robots.txt`
 tarayıcıları kapatır ve `index.html` içinde de aynı meta etiketi var — sayfa arama
