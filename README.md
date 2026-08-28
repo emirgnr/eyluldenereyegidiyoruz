@@ -42,6 +42,23 @@ parmakla sürüklenmesi/iki parmakla yakınlaştırılması ve durak pop-up'ı �
 sürüklemesi bırakıldığı yerde kalıyor (sapma 0,00 birim) ve sürüklerken metin seçilmiyor.
 Beş turun bağlantısı da HTTP 200 dönüyor.
 
+## Yayınlama (Cloudflare Pages)
+
+Depo **private** kalır; Cloudflare Pages private GitHub deposundan derleyip yayınlar.
+
+| Ayar | Değer |
+| --- | --- |
+| Framework preset | None |
+| Build command | `npm run build` |
+| Build output directory | `dist` |
+| Node sürümü | `.node-version` dosyasından okunur (20) |
+
+`public/_headers` her yanıta `X-Robots-Tag: noindex, nofollow` ekler, `public/robots.txt`
+tarayıcıları kapatır ve `index.html` içinde de aynı meta etiketi var — sayfa arama
+motorlarında çıkmaz, yalnızca adresi bilen açabilir. Adresi bilenlerin de giremesini
+istemiyorsan Cloudflare Zero Trust → Access ile projeye e-posta doğrulamalı bir politika
+eklenebilir (ücretsiz katmanda 50 kullanıcıya kadar).
+
 ## Harita hakkında
 
 Harita **hiçbir API anahtarı veya harita servisi gerektirmez.** Türkiye ve Yunanistan kıyı
